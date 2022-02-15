@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Floor is Lava</title>
+        <link href="./style.css" rel="stylesheet"></link>
+    </head>
+
+    <body>
+        <canvas id="canv"></canvas>
+        
+        <script src="scripts.js"></script>
+        <script src="time.js"></script>
+        <script src="Component.js"></script>
+        <script src="GameObject.js"></script>
+        <script src="FloorDrawComponent.js"></script>
+        <script src="FloorUpdateComponent.js"></script>
+        <script src="FloorGameObject.js"></script>
+        <script src="RectangleDrawComponent.js"></script>
+        <script src="RectangleUpdateComponent.js"></script>
+        <script src="RectangleGameObject.js"></script>
+
+        <script>
+            "use strict"
+
+            let {canvas, ctx} = getCanvas();
+
+            let x = ctx.canvas.width / 2 - 50;
+            let y = ctx.canvas.height / 2 - 50;
+            let width = 50;
+            let height = 50;
+            let onGround = false;
+            let jumpTime = 0;
+
+
+
+            let gameObjects = [];
+
+
+
+
+            gameObjects.push(new RectangleGameObject(x, y, width, height, onGround, jumpTime));
+
+            
+
+            let leftIsPressed = false;
+            let upIsPressed = false;
+            let rightIsPressed = false;
+            let spaceIsPressed = false;
+
+            //Checks whether you're pressing keys to run.
+            document.addEventListener('keydown', function(e) {
+                switch (e.keyCode) {
+                   //Left or a
+                    case 37:
+                    case 65:
+                        leftIsPressed = true;
+                        break;
+                    //Up or w
+                    case 38:
+                    case 87:
+                        upIsPressed = true;
+                        break;
+                    //Right or d
+                    case 39:
+                    case 68:
+                        rightIsPressed = true;
+                        break;
+                    //Down or s
+                    case 40:
+                    case 83:
+                        downIsPressed = true;
+                        break;
+                    //Space
+                    case 32:
+                        spaceIsPressed = true;
+                        break;
+                }
+            });
+
+            //Check when the user lets go of a key.
+            document.addEventListener('keyup', function onkeyrelease(e){
+                switch (e.keyCode) {
+                    //Left or a
+                    case 37:
+                    case 65:
+                        leftIsPressed = false;
+                        break;
+                    //Up or w
+                    case 38:
+                    case 87:
+                    upIsPressed = false;
+                        break;
+                    //Right of d
+                    case 39:
+                    case 68:
+                        rightIsPressed = false;
+                        break;
+                    //Down or s
+                    case 40:
+                    case 83:
+                        downIsPressed = false;
+                        break;
+                    //Space
+                    case 32:
+                        spaceIsPressed = false;
+                }
+            });
+
+            function tick() {
+                update();
+                draw();
+
+                Time.timePassed += Time.secondsBetweenFrame;
+            }
+
+            //Calld individual object's update function.
+            function update() {
+                for (let rectangle of gameObjects) {
+                    rectangle.update();
+                }
+                
+            }
+
+            //Calls the individual object's draw function.
+            function draw() {
+                ctx.fillStyle = "black";
+                ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+                for (let rectangle of gameObjects) {
+                    rectangle.draw(ctx);
+                }
+            
+                
+
+                
+            }
+
+
+            setInterval(tick, Time.millisecondsBetweenFrames);
+        </script>
+    </body>
+</html>
