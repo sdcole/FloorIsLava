@@ -15,6 +15,12 @@
         <script src="FloorDrawComponent.js"></script>
         <script src="FloorUpdateComponent.js"></script>
         <script src="FloorGameObject.js"></script>
+        <script src="ElevatorDrawComponent.js"></script>
+        <script src="ElevatorUpdateComponent.js"></script>
+        <script src="ElevatorGameObject.js"></script>
+        <script src="LavaDrawComponent.js"></script>
+        <script src="LavaUpdateComponent.js"></script>
+        <script src="LavaGameObject.js"></script>
         <script src="RectangleDrawComponent.js"></script>
         <script src="RectangleUpdateComponent.js"></script>
         <script src="RectangleGameObject.js"></script>
@@ -37,6 +43,12 @@
 
 
 
+
+            gameObjects.push(new FloorGameObject(0, ctx.canvas.height - 50, ctx.canvas.width, 50));
+
+            gameObjects.push(new LavaGameObject(0, ctx.canvas.height - 50, 250, 50))
+
+            gameObjects.push(new ElevatorGameObject(ctx.canvas.width - 100, ctx.canvas.height - 60, 100, 10, ctx.canvas.width - 50, 450));
 
             gameObjects.push(new RectangleGameObject(x, y, width, height, onGround, jumpTime));
 

@@ -11,11 +11,16 @@ class RectangleUpdateComponent extends Component {
     }
 
     update() {
-        if (this.y >= ctx.canvas.height - 50) {
+
+        if (this.y >= ctx.canvas.height - 100) {
             this.onGround = true;
         }
         else {
             this.onGround = false;
+        }
+
+        if (this.onGround && this.x < 201) {
+            this.reset();
         }
 
         if (leftIsPressed && this.x > 0) {
@@ -33,26 +38,36 @@ class RectangleUpdateComponent extends Component {
         }
         */
 
-        if (!this.onGround && this.jumpTime <= 500) {
-           this.y += 2;
+        if (!this.onGround && this.jumpTime <= 250) {
+           this.y += 4;
         
         }
-        if (spaceIsPressed && this.y > 0 && this.onGround) {
-           this.y -= 2;
-           this.jumpTime = 1000;
+        if ((spaceIsPressed  || upIsPressed) && this.y > 0 && this.onGround) {
+           this.y -= 4;
+           this.jumpTime = 500;
            
         }
-        else if(this.jumpTime > 500 && this.y > 0 && !this.onGround) {
+        else if(this.jumpTime > 250 && this.y > 0 && !this.onGround) {
 
         }
 
-        if (this.jumpTime > 500) {
+        if (this.jumpTime > 250) {
             this.jumpTime -= 10;
-            this.y -= 2
+            this.y -= 4
 
         }
+        
 
     }
 
+    reset() {
+        this.x = ctx.canvas.width / 2 - 50;
+        this.y = ctx.canvas.height / 2 - 50;
+    }
+
+    
+
+
 
 }
+

@@ -1,4 +1,4 @@
-class FloorUpdateComponent extends Component {
+class LavaUpdateComponent extends Component {
 
     constructor(parent, x, y, width, height) {
         super(parent);
@@ -9,6 +9,7 @@ class FloorUpdateComponent extends Component {
 
     }
     update() {
+
     }
 
 }
