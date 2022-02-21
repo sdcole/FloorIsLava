@@ -1,30 +1,31 @@
 class ElevatorUpdateComponent extends Component {
 
-    constructor(parent, x, y, width, height, maxMoveWidth, maxMoveHeight) {
+    constructor(parent, x, y, width, height, maxMoveWidth, minMoveHeight) {
         super(parent);
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.maxMoveWidth = maxMoveWidth;
-        this.maxMoveHeight = maxMoveHeight;
+        this.minMoveHeight = minMoveHeight;
+        this.goingUp = true;
 
 
     }
     update() {
-        let goingUp = true;
-        if (y <= this.maxMoveHeight) {
-            goingUp = false;
+        if (this.y <= this.minMoveHeight) {
+            this.goingUp = false;
         }
-        if (y <= ctx.canvas.height - 50) {
-            goingUp = true;
+        if (this.y >= ctx.canvas.height - 50) {
+            this.goingUp = true;
         }
-        if (goingUp) {
+        if (this.goingUp) {
             this.y -= 2;
         }
         else {
             this.y += 2;
         }
+
 
     }
 

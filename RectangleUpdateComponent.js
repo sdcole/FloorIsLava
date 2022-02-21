@@ -19,9 +19,16 @@ class RectangleUpdateComponent extends Component {
             this.onGround = false;
         }
 
-        if (this.onGround && this.x < 201) {
+        //First lava block collision test.
+        if (this.onGround && this.x >= 100 && this.x <= 300 ) {
             this.reset();
         }
+
+        //Second lava bloc collision test.
+        if (this.onGround && this.x >= 400 && this.x <= 700) {
+            this.reset();
+        }
+
 
         if (leftIsPressed && this.x > 0) {
             this.x -= 10;
@@ -61,8 +68,9 @@ class RectangleUpdateComponent extends Component {
     }
 
     reset() {
-        this.x = ctx.canvas.width / 2 - 50;
-        this.y = ctx.canvas.height / 2 - 50;
+        this.x = 0;
+        this.y = ctx.canvas.height - 100;
+        Time.timePassed = 0;
     }
 
     

@@ -1,8 +1,8 @@
 class ElevatorGameObject extends GameObject {
 
-    constructor(x, y, width, height, maxMoveWidth, maxMoveHeight) {
+    constructor(x, y, width, height, maxMoveWidth, minMoveHeight) {
         super();
-        this.components.push(new ElevatorUpdateComponent(this, x, y, width, height, maxMoveWidth, maxMoveHeight));
+        this.components.push(new ElevatorUpdateComponent(this, x, y, width, height, maxMoveWidth, minMoveHeight));
         this.components.push(new ElevatorDrawComponent(this));
     }
     update() {

@@ -46,12 +46,15 @@
 
             gameObjects.push(new FloorGameObject(0, ctx.canvas.height - 50, ctx.canvas.width, 50));
 
-            gameObjects.push(new LavaGameObject(0, ctx.canvas.height - 50, 250, 50))
+            gameObjects.push(new LavaGameObject(100, ctx.canvas.height - 50, 250, 50));
+            gameObjects.push( new LavaGameObject(400, ctx.canvas.height - 50, 350, 50));
 
-            gameObjects.push(new ElevatorGameObject(ctx.canvas.width - 100, ctx.canvas.height - 60, 100, 10, ctx.canvas.width - 50, 450));
 
-            gameObjects.push(new RectangleGameObject(x, y, width, height, onGround, jumpTime));
+            gameObjects.push(new ElevatorGameObject(ctx.canvas.width - 100, ctx.canvas.height - 75, 100, 10, ctx.canvas.width - 50, 0));
 
+            gameObjects.push(new RectangleGameObject(0, ctx.canvas.height - 100, width, height, onGround, jumpTime));
+
+            
             
 
             let leftIsPressed = false;
@@ -121,6 +124,8 @@
             function tick() {
                 update();
                 draw();
+                ctx.font = "30px Arial";
+                ctx.fillText("Welcome to Floor is Lava\n Time: " + parseInt(Time.timePassed), ctx.canvas.width / 2 - 150, 50);
 
                 Time.timePassed += Time.secondsBetweenFrame;
             }
