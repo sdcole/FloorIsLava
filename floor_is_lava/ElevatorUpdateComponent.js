@@ -1,3 +1,5 @@
+import Component from "../engine/Component.js";
+
 class ElevatorUpdateComponent extends Component {
 
     constructor(parent, x, y, width, height, maxMoveWidth, minMoveHeight) {
@@ -13,6 +15,13 @@ class ElevatorUpdateComponent extends Component {
 
     }
     update() {
+
+        let canvas = document.querySelector("#canv");
+        let ctx = canvas.getContext("2d");
+    
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
         if (this.y <= this.minMoveHeight) {
             this.goingUp = false;
         }
@@ -30,3 +39,4 @@ class ElevatorUpdateComponent extends Component {
     }
 
 }
+export default ElevatorUpdateComponent;

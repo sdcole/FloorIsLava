@@ -6,3 +6,5 @@ function getCanvas() {
     canvas.height = window.innerHeight;
     return {canvas, ctx};
 }
+
+export {getCanvas};

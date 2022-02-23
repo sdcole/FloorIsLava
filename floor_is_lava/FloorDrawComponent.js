@@ -1,3 +1,6 @@
+import Component from "../engine/Component.js";
+import GameObject from "../engine/GameObject.js";
+import FloorUpdateComponent from "./FloorUpdateComponent.js";
 class FloorDrawComponent extends Component {
     constructor(parent) {
       super(parent);
@@ -11,3 +14,4 @@ class FloorDrawComponent extends Component {
       ctx.stroke();
     }
   }
+  export default FloorDrawComponent;

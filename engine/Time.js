@@ -3,3 +3,4 @@ class Time {
     static secondsBetweenFrame = .01
     static timePassed = 0;
 }
+export default Time;

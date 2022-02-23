@@ -1,3 +1,8 @@
+import Component from "../engine/Component.js";
+import Input from "../engine/Input.js"
+import Time from "../engine/Time.js";
+let canvas = document.querySelector("#canv");
+let ctx = canvas.getContext("2d");
 class RectangleUpdateComponent extends Component {
 
     constructor(parent, x, y, width, height, onGround, jumpTime) {
@@ -8,9 +13,15 @@ class RectangleUpdateComponent extends Component {
         this.height = height;
         this.onGround = onGround;
         this.jumpTime = jumpTime;
+
     }
 
     update() {
+
+        
+    
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
         if (this.y >= ctx.canvas.height - 100) {
             this.onGround = true;
@@ -30,10 +41,10 @@ class RectangleUpdateComponent extends Component {
         }
 
 
-        if (leftIsPressed && this.x > 0) {
+        if ((Input.getKey("ArrowLeft") == true || Input.getKey("a") == true) && this.x > 0) {
             this.x -= 10;
         }
-        if (rightIsPressed && this.x < ctx.canvas.width - 50) {
+        if ((Input.getKey("ArrowRight") == true || Input.getKey("d")) && this.x < ctx.canvas.width - 50) {
             this.x += 10;
         }
         /*if (upIsPressed && rectangle.y > 0) {
@@ -49,7 +60,7 @@ class RectangleUpdateComponent extends Component {
            this.y += 4;
         
         }
-        if ((spaceIsPressed  || upIsPressed) && this.y > 0 && this.onGround) {
+        if ((Input.getKey(" ") == true || Input.getKey("ArrowUp") == true || Input.getKey("w") == true) && this.y > 0 && this.onGround) {
            this.y -= 4;
            this.jumpTime = 500;
            
@@ -78,4 +89,5 @@ class RectangleUpdateComponent extends Component {
 
 
 }
+export default RectangleUpdateComponent;
 

@@ -1,3 +1,5 @@
+
+
 class GameObject {
     constructor() {
         this.components = [];
@@ -10,3 +12,4 @@ class GameObject {
         this.components.filter(c=>c.draw).forEach(c=>c.draw());
     }
 }
+export default GameObject;

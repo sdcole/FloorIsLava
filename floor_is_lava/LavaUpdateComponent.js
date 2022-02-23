@@ -1,3 +1,4 @@
+import Component from "../engine/Component.js";
 class LavaUpdateComponent extends Component {
 
     constructor(parent, x, y, width, height) {
@@ -13,3 +14,4 @@ class LavaUpdateComponent extends Component {
     }
 
 }
+export default LavaUpdateComponent;

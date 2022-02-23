@@ -1,3 +1,7 @@
+import Component from "../engine/Component.js";
+import GameObject from "../engine/GameObject.js";
+import LavaUpdateComponent from "./LavaUpdateComponent.js";
+
 class LavaDrawComponent extends Component {
     constructor(parent) {
       super(parent);
@@ -11,3 +15,4 @@ class LavaDrawComponent extends Component {
       ctx.stroke();
     }
   }
+  export default LavaDrawComponent;

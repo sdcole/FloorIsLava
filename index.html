@@ -8,25 +8,34 @@
     <body>
         <canvas id="canv"></canvas>
         
-        <script src="scripts.js"></script>
-        <script src="time.js"></script>
-        <script src="Component.js"></script>
-        <script src="GameObject.js"></script>
-        <script src="FloorDrawComponent.js"></script>
-        <script src="FloorUpdateComponent.js"></script>
-        <script src="FloorGameObject.js"></script>
-        <script src="ElevatorDrawComponent.js"></script>
-        <script src="ElevatorUpdateComponent.js"></script>
-        <script src="ElevatorGameObject.js"></script>
-        <script src="LavaDrawComponent.js"></script>
-        <script src="LavaUpdateComponent.js"></script>
-        <script src="LavaGameObject.js"></script>
-        <script src="RectangleDrawComponent.js"></script>
-        <script src="RectangleUpdateComponent.js"></script>
-        <script src="RectangleGameObject.js"></script>
 
-        <script>
+
+        <script type="module">
             "use strict"
+
+            import {getCanvas} from "./engine/scripts.js";
+            import Time from "./engine/Time.js";
+            import GameObject from "./engine/GameObject.js";
+            import Component from "./engine/Component.js";
+            import Input from "./engine/Input.js";
+
+            import FloorDrawComponent from "./floor_is_lava/FloorDrawComponent.js";
+            import FloorGameObject from "./floor_is_lava/FloorGameObject.js";
+            import FloorUpdateComponent from "./floor_is_lava/FloorUpdateComponent.js";
+
+            import ElevatorDrawComponent from "./floor_is_lava/ElevatorDrawComponent.js";
+            import ElevatorGameObject from "./floor_is_lava/ElevatorGameObject.js";
+            import ElevatorUpdateComponent from "./floor_is_lava/ElevatorUpdateComponent.js";
+
+            import LavaDrawComponent from "./floor_is_lava/LavaDrawComponent.js";
+            import LavaGameObject from "./floor_is_lava/LavaGameObject.js";
+            import LavaUpdateComponent from "./floor_is_lava/LavaUpdateComponent.js";
+
+            import RectangleDrawComponent from "./floor_is_lava/RectangleDrawComponent.js";
+            import RectangleGameObject from "./floor_is_lava/RectangleGameObject.js";
+            import RectangleUpdateComponent from "./floor_is_lava/RectangleUpdateComponent.js";
+            
+            Input.attach(document);
 
             let {canvas, ctx} = getCanvas();
 
@@ -57,80 +66,22 @@
             
             
 
-            let leftIsPressed = false;
-            let upIsPressed = false;
-            let rightIsPressed = false;
-            let spaceIsPressed = false;
 
-            //Checks whether you're pressing keys to run.
-            document.addEventListener('keydown', function(e) {
-                switch (e.keyCode) {
-                   //Left or a
-                    case 37:
-                    case 65:
-                        leftIsPressed = true;
-                        break;
-                    //Up or w
-                    case 38:
-                    case 87:
-                        upIsPressed = true;
-                        break;
-                    //Right or d
-                    case 39:
-                    case 68:
-                        rightIsPressed = true;
-                        break;
-                    //Down or s
-                    case 40:
-                    case 83:
-                        downIsPressed = true;
-                        break;
-                    //Space
-                    case 32:
-                        spaceIsPressed = true;
-                        break;
-                }
-            });
 
-            //Check when the user lets go of a key.
-            document.addEventListener('keyup', function onkeyrelease(e){
-                switch (e.keyCode) {
-                    //Left or a
-                    case 37:
-                    case 65:
-                        leftIsPressed = false;
-                        break;
-                    //Up or w
-                    case 38:
-                    case 87:
-                    upIsPressed = false;
-                        break;
-                    //Right of d
-                    case 39:
-                    case 68:
-                        rightIsPressed = false;
-                        break;
-                    //Down or s
-                    case 40:
-                    case 83:
-                        downIsPressed = false;
-                        break;
-                    //Space
-                    case 32:
-                        spaceIsPressed = false;
-                }
-            });
+            
 
             function tick() {
+                Input.update();
                 update();
                 draw();
                 ctx.font = "30px Arial";
-                ctx.fillText("Welcome to Floor is Lava\n Time: " + parseInt(Time.timePassed), ctx.canvas.width / 2 - 150, 50);
+                ctx.fillText("Welcome to Floor is Lava", ctx.canvas.width / 2 - 150, 50);
+                ctx.fillText("Time: " + parseInt(Time.timePassed), ctx.canvas.width / 2, 100)
 
                 Time.timePassed += Time.secondsBetweenFrame;
             }
 
-            //Calld individual object's update function.
+            //Calls individual object's update function.
             function update() {
                 for (let rectangle of gameObjects) {
                     rectangle.update();

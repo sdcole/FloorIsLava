@@ -1,3 +1,7 @@
+import Component from "../engine/Component.js";
+import GameObject from "../engine/GameObject.js";
+import ElevatorUpdateComponent from "./ElevatorUpdateComponent.js";
+
 class ElevatorDrawComponent extends Component {
     constructor(parent) {
       super(parent);
@@ -11,3 +15,4 @@ class ElevatorDrawComponent extends Component {
       ctx.stroke();
     }
   }
+  export default ElevatorDrawComponent;
