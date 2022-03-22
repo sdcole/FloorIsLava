@@ -19,21 +19,15 @@
             import Component from "./engine/Component.js";
             import Input from "./engine/Input.js";
 
-            import FloorDrawComponent from "./floor_is_lava/FloorDrawComponent.js";
             import FloorGameObject from "./floor_is_lava/FloorGameObject.js";
-            import FloorUpdateComponent from "./floor_is_lava/FloorUpdateComponent.js";
 
-            import ElevatorDrawComponent from "./floor_is_lava/ElevatorDrawComponent.js";
             import ElevatorGameObject from "./floor_is_lava/ElevatorGameObject.js";
-            import ElevatorUpdateComponent from "./floor_is_lava/ElevatorUpdateComponent.js";
 
-            import LavaDrawComponent from "./floor_is_lava/LavaDrawComponent.js";
             import LavaGameObject from "./floor_is_lava/LavaGameObject.js";
-            import LavaUpdateComponent from "./floor_is_lava/LavaUpdateComponent.js";
 
-            import RectangleDrawComponent from "./floor_is_lava/RectangleDrawComponent.js";
+            import LevelEndGameObject from "./floor_is_lava/LevelEndGameObject.js";
+
             import RectangleGameObject from "./floor_is_lava/RectangleGameObject.js";
-            import RectangleUpdateComponent from "./floor_is_lava/RectangleUpdateComponent.js";
             
             Input.attach(document);
 
@@ -53,18 +47,19 @@
 
 
 
-            gameObjects.push(new FloorGameObject(0, ctx.canvas.height - 50, ctx.canvas.width, 50));
+            gameObjects.push(new FloorGameObject(0, ctx.canvas.height - 50, ctx.canvas.width, 50, 50));
 
             gameObjects.push(new LavaGameObject(100, ctx.canvas.height - 50, 250, 50));
-            gameObjects.push( new LavaGameObject(400, ctx.canvas.height - 50, 350, 50));
+            gameObjects.push( new LavaGameObject(400, ctx.canvas.height - 50, 400, 50));
 
 
             gameObjects.push(new ElevatorGameObject(ctx.canvas.width - 100, ctx.canvas.height - 75, 100, 10, ctx.canvas.width - 50, 0));
 
-            gameObjects.push(new RectangleGameObject(0, ctx.canvas.height - 100, width, height, onGround, jumpTime));
-
+            gameObjects.push(new LevelEndGameObject(ctx.canvas.width - 50, ctx.canvas.height - 75, 50, 100));
             
             
+            
+            gameObjects.push(new RectangleGameObject(0, ctx.canvas.height - 100, width, height, onGround));
 
 
 
@@ -84,7 +79,7 @@
             //Calls individual object's update function.
             function update() {
                 for (let rectangle of gameObjects) {
-                    rectangle.update();
+                    rectangle.update(ctx);
                 }
                 
             }

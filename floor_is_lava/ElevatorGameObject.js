@@ -1,22 +1,17 @@
-import Component from "../engine/Component.js";
 import GameObject from "../engine/GameObject.js";
 import ElevatorUpdateComponent from "./ElevatorUpdateComponent.js";
-import ElevatorDrawComponent from "./ElevatorDrawComponent.js";
+import Rectangle from "../engine/Rectangle.js";
+import ElevatorDraw from "../engine/ElevatorDraw.js";
 
 class ElevatorGameObject extends GameObject {
 
-    constructor(x, y, width, height, maxMoveWidth, minMoveHeight) {
+    constructor(x, y, w, h, maxMoveWidth, maxMoveHeight) {
         super();
-        this.components.push(new ElevatorUpdateComponent(this, x, y, width, height, maxMoveWidth, minMoveHeight));
-        this.components.push(new ElevatorDrawComponent(this));
+        this.components.push(new Rectangle(this, x, y, w, h));
+        this.components.push(new ElevatorDraw(this));
+        this.components.push(new ElevatorUpdateComponent(this, x, y, w, h, maxMoveWidth, maxMoveHeight));
+        
     }
-    update() {
-        this.components.filter(c=>c.update).forEach(c=>c.update());
-    }
-    draw() {
-        let canvas = document.querySelector("#canv");
-        let ctx = canvas.getContext("2d");
-        this.components.filter(c=>c.draw).forEach(c=>c.draw(ctx));
-    }
+
 }
 export default ElevatorGameObject;

@@ -14,19 +14,7 @@ class Input {
       this.keysDown = [];
       this.keysUp = [];
   
-      this.frameMouseButtonsDown = this.mouseButtonsDown;
-      this.frameMouseButtonsUp = this.mouseButtonsUp;
-      this.mouseButtonsDown = [];
-      this.mouseButtonsUp = [];
-  
-      this.lastFrameMousePositionX = this.frameMousePositionX
-      this.lastFrameMousePositionY = this.frameMousePositionY
-  
-      this.frameMousePositionX = this.mousePositionX;
-      this.frameMousePositionY = this.mousePositionY;
-  
-      this.frameScrollWheel = this.scrollWheel;
-      this.scrollWheel = 0;
+
     }
   
     //Get the values of different input states
@@ -66,16 +54,7 @@ class Input {
       }
   
       
-  
-      // Based on https://stackoverflow.com/questions/381795/how-to-disable-right-click-context-menu-in-javascript
-      // Kills the right mouse context menu
-      function contextmenu(event) {
-        if (event.preventDefault != undefined)
-          event.preventDefault();
-        if (event.stopPropagation != undefined)
-          event.stopPropagation();
-        return false;
-      }
+
     }
   }
   

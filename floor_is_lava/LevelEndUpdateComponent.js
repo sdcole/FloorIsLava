@@ -1,5 +1,5 @@
 import Component from "../engine/Component.js";
-class LavaUpdateComponent extends Component {
+class LevelEndUpdateComponent extends Component {
 
     constructor(parent, x, y, w, h) {
         super(parent);
@@ -14,4 +14,4 @@ class LavaUpdateComponent extends Component {
     }
 
 }
-export default LavaUpdateComponent;
+export default LevelEndUpdateComponent;
