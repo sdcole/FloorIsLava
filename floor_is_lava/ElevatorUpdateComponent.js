@@ -2,9 +2,10 @@ import Component from "../engine/Component.js";
 
 class ElevatorUpdateComponent extends Component {
 
-    constructor(parent, x, y, width, height, maxMoveWidth, minMoveHeight) {
+    constructor(parent, x, y, width, height, maxMoveWidth, minMoveHeight,ctx) {
         super(parent);
 
+        this.ctx = ctx;
         this.maxMoveWidth = maxMoveWidth;
         this.minMoveHeight = minMoveHeight;
         this.goingUp = true;

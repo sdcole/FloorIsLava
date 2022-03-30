@@ -19,83 +19,36 @@
             import Component from "./engine/Component.js";
             import Input from "./engine/Input.js";
 
-            import FloorGameObject from "./floor_is_lava/FloorGameObject.js";
 
-            import ElevatorGameObject from "./floor_is_lava/ElevatorGameObject.js";
-
-            import LavaGameObject from "./floor_is_lava/LavaGameObject.js";
-
-            import LevelEndGameObject from "./floor_is_lava/LevelEndGameObject.js";
-
-            import RectangleGameObject from "./floor_is_lava/RectangleGameObject.js";
+            import Game from "./engine/Game.js";
+            import LevelOneScene from "./floor_is_lava/LevelOneScene.js";
+            import LevelTwoScene from "./floor_is_lava/LevelTwoScene.js";
             
             Input.attach(document);
 
             let {canvas, ctx} = getCanvas();
 
-            let x = ctx.canvas.width / 2 - 50;
-            let y = ctx.canvas.height / 2 - 50;
-            let width = 50;
-            let height = 50;
-            let onGround = false;
-            let jumpTime = 0;
+            let levelOneScene = new LevelOneScene(ctx);
+            let levelTwoScene = new LevelTwoScene(ctx);
+            Game.scenes.push(levelOneScene);
+            Game.scenes.push(levelTwoScene);
+
+            Game.changeScene(0);
 
 
 
-            let gameObjects = [];
-
-
-
-
-            gameObjects.push(new FloorGameObject(0, ctx.canvas.height - 50, ctx.canvas.width, 50, 50));
-
-            gameObjects.push(new LavaGameObject(100, ctx.canvas.height - 50, 250, 50));
-            gameObjects.push( new LavaGameObject(400, ctx.canvas.height - 50, 400, 50));
-
-
-            gameObjects.push(new ElevatorGameObject(ctx.canvas.width - 100, ctx.canvas.height - 75, 100, 10, ctx.canvas.width - 50, 0));
-
-            gameObjects.push(new LevelEndGameObject(ctx.canvas.width - 50, ctx.canvas.height - 75, 50, 100));
-            
-            
-            
-            gameObjects.push(new RectangleGameObject(0, ctx.canvas.height - 100, width, height, onGround));
 
 
 
             
 
             function tick() {
+                Game.updateScene();
                 Input.update();
-                update();
-                draw();
-                ctx.font = "30px Arial";
-                ctx.fillText("Welcome to Floor is Lava", ctx.canvas.width / 2 - 150, 50);
-                ctx.fillText("Time: " + parseInt(Time.timePassed), ctx.canvas.width / 2, 100)
-
+                Game.scene().update(ctx);
+                Game.scene().draw(ctx);
+                Game.scene().remove(ctx);
                 Time.timePassed += Time.secondsBetweenFrame;
-            }
-
-            //Calls individual object's update function.
-            function update() {
-                for (let rectangle of gameObjects) {
-                    rectangle.update(ctx);
-                }
-                
-            }
-
-            //Calls the individual object's draw function.
-            function draw() {
-                ctx.fillStyle = "black";
-                ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-
-                for (let rectangle of gameObjects) {
-                    rectangle.draw(ctx);
-                }
-            
-                
-
-                
             }
 
 

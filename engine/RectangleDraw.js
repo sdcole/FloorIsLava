@@ -7,7 +7,8 @@ class RectangleDraw extends Component {
     }
     draw(ctx) {
         let rectangle = this.parent.getComponent("Rectangle");
-        ctx.fillStyle = "#b642f5";
+        
+        ctx.fillStyle = rectangle.color;
         ctx.fillRect(
             rectangle.x, 
             rectangle.y, 

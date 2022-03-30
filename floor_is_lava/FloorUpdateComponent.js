@@ -1,4 +1,5 @@
 import Component from "../engine/Component.js";
+
 class FloorUpdateComponent extends Component {
 
     constructor(parent) {

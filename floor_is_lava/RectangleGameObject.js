@@ -4,11 +4,13 @@ import Rectangle from "../engine/Rectangle.js";
 import RectangleDraw from "../engine/RectangleDraw.js"
 class RectangleGameObject extends GameObject {
 
-    constructor(x, y, w, h, onGround) {
+    constructor(x, y, w, h, color, onGround) {
         super();
-        this.components.push(new Rectangle(this, x, y, w, h))
+        this.onGround = onGround;
+        this.components.push(new Rectangle(this, x, y, w, h, color))
         this.components.push(new RectangleDraw(this));
-        this.components.push(new RectangleUpdateComponent(this, x, y, w, h, onGround));
+        this.components.push(new RectangleUpdateComponent(this, x, y, w, h, this.onGround));
+        
         
     }
 
