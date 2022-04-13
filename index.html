@@ -3,6 +3,7 @@
     <head>
         <title>Floor is Lava</title>
         <link href="./style.css" rel="stylesheet"></link>
+        <link rel="icon" type="image/x-icon" href="https://cdn.discordapp.com/emojis/962495906668744804.webp?size=96&quality=lossless">
     </head>
 
     <body>
@@ -21,6 +22,7 @@
 
 
             import Game from "./engine/Game.js";
+            import StartScene from "./floor_is_lava/StartScene.js"
             import LevelOneScene from "./floor_is_lava/LevelOneScene.js";
             import LevelTwoScene from "./floor_is_lava/LevelTwoScene.js";
             
@@ -28,8 +30,10 @@
 
             let {canvas, ctx} = getCanvas();
 
+            let startScene = new StartScene();
             let levelOneScene = new LevelOneScene(ctx);
             let levelTwoScene = new LevelTwoScene(ctx);
+            Game.scenes.push(startScene);
             Game.scenes.push(levelOneScene);
             Game.scenes.push(levelTwoScene);
 

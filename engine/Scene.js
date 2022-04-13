@@ -3,8 +3,9 @@ class Scene{
       this.title = title;
       this.gameObjects = [];
     }
-    loadLevel() {
+    restart() {
       this.gameObjects = [];
+      this.start();
     }
     update(ctx){
       for (let gameObject of this.gameObjects) {
@@ -20,7 +21,11 @@ class Scene{
       }
     }
     remove(){
-      this.gameObjects = this.gameObjects.filter(g=>!g.markForDelete);
+      let toRemove = this.gameObjects.filter(g=>g.markForDelete);
+      if(toRemove.length > 0) {
+        console.log(toRemove.length)
+      }
+    this.gameObjects = this.gameObjects.filter(g=>!g.markForDelete);
     }
   }
   

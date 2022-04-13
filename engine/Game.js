@@ -1,6 +1,7 @@
 class Game {
     static scenes = [];
     static currentSceneIndex = 0;
+    static nextSceneIndex = -1;
     static scene(){
       return Game.scenes[Game.currentSceneIndex];
     }
@@ -11,6 +12,7 @@ class Game {
       if(Game.nextSceneIndex != -1){
         Game.currentSceneIndex = Game.nextSceneIndex;
         Game.nextSceneIndex = -1;
+        Game.scene().restart();
       }
     }
     static changeScene(index){

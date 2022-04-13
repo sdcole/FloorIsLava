@@ -9,6 +9,7 @@ class RectangleUpdateComponent extends Component {
         super(parent);
 
         this.jumpTime = 0;
+        let onElevator = false;
     }
 
     update(ctx) {
