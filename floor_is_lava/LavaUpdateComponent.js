@@ -13,7 +13,7 @@ class LavaUpdateComponent extends Component {
         this.h = h;
 
     }
-    update() {
+    update(ctx) {
         let rectangleGameObject = Game.findByType("RectangleGameObject")[0];
         let rectangleUpdateComponent = rectangleGameObject.getComponent("RectangleUpdateComponent");
         let rectangle = rectangleGameObject.getComponent("Rectangle");

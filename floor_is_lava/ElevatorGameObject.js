@@ -5,11 +5,11 @@ import RectangleDraw from "../engine/RectangleDraw.js";
 
 class ElevatorGameObject extends GameObject {
 
-    constructor(x, y, w, h, maxMoveWidth, maxMoveHeight, color) {
+    constructor(x, y, w, h, minMoveHeight, color) {
         super();
         this.components.push(new Rectangle(this, x, y, w, h, color));
         this.components.push(new RectangleDraw(this));
-        this.components.push(new ElevatorUpdateComponent(this, x, y, w, h, maxMoveWidth, maxMoveHeight));
+        this.components.push(new ElevatorUpdateComponent(this, x, y, w, h, minMoveHeight));
         
     }
 

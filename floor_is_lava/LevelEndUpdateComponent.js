@@ -18,7 +18,7 @@ class LevelEndUpdateComponent extends Component {
 
         if (rectangleUpdateComponent.onGround && rectangle.x >= this.x - 50 && rectangle.x <= this.x + this.w) {
             console.log("CHANGE");
-            Game.changeScene(1);
+            Game.changeScene(Game.currentSceneIndex + 1);
         }
     }
 

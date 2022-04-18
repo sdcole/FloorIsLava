@@ -1,12 +1,12 @@
 import Component from "../engine/Component.js";
+import Game from "../engine/Game.js";
 
 class ElevatorUpdateComponent extends Component {
 
-    constructor(parent, x, y, width, height, maxMoveWidth, minMoveHeight,ctx) {
+    constructor(parent, x, y, width, height, minMoveHeight,ctx) {
         super(parent);
 
         this.ctx = ctx;
-        this.maxMoveWidth = maxMoveWidth;
         this.minMoveHeight = minMoveHeight;
         this.goingUp = true;
 
@@ -14,23 +14,35 @@ class ElevatorUpdateComponent extends Component {
     }
     update(ctx) {
 
-        let rectangle = this.parent.getComponent("Rectangle");
-    
+        let elevatorRectangle = this.parent.getComponent("Rectangle");
+        let rectangleGameObject = Game.findByType("RectangleGameObject")[0];
+        let characterRectangle = rectangleGameObject.getComponent("Rectangle");
 
-        if (rectangle.y <= this.minMoveHeight) {
+
+        if (elevatorRectangle.y <= this.minMoveHeight) {
             this.goingUp = false;
         }
-        if (rectangle.y >= ctx.canvas.height - 50) {
+        if (elevatorRectangle.y >= ctx.canvas.height - 50) {
             this.goingUp = true;
         }
         if (this.goingUp) {
-            rectangle.y -= 2;
+            elevatorRectangle.y -= 2;
+            if (characterRectangle.x > elevatorRectangle.x && characterRectangle.x < elevatorRectangle.x + this.width) {
+                console.log(characterRectangle.y + "WOO");
+                characterRectangle.y -= 2;
+                characterRectangle.onGround = true;
+            }
         }
         else {
-            rectangle.y += 2;
+            elevatorRectangle.y += 2;
+            console.log(characterRectangle.y + "WOO");
+            if (characterRectangle.x > elevatorRectangle.x && characterRectangle.x < elevatorRectangle.x + this.width) {
+                characterRectangle.y += 2;
+                characterRectangle.onGround = true;
+            }
         }
 
-
+        console.log(elevatorRectangle.y);
     }
 
 }

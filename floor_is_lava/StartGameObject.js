@@ -11,8 +11,8 @@ class StartGameObject extends GameObject{
     this.start();
   }
   start(){
-    this.components.push(new Text(this, this.x,this.y,"Welcome", "50px sans"))
-    this.components.push(new TextDraw(this, "orange", "blue"))
+    this.components.push(new Text(this, this.x,this.y,"Welcome to floor is lava!", "50px times"))
+    this.components.push(new TextDraw(this, "white", "white"))
     this.components.push(new StartUpdateComponent(this))
   }
 }

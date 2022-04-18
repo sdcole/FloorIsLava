@@ -25,6 +25,8 @@
             import StartScene from "./floor_is_lava/StartScene.js"
             import LevelOneScene from "./floor_is_lava/LevelOneScene.js";
             import LevelTwoScene from "./floor_is_lava/LevelTwoScene.js";
+            import LevelThreeScene from "./floor_is_lava/LevelThreeScene.js";
+            import LevelFourScene from "./floor_is_lava/LevelFourScene.js";
             
             Input.attach(document);
 
@@ -33,9 +35,13 @@
             let startScene = new StartScene();
             let levelOneScene = new LevelOneScene(ctx);
             let levelTwoScene = new LevelTwoScene(ctx);
+            let levelThreeScene = new LevelThreeScene(ctx);
+            let levelFourScene = new LevelFourScene(ctx);
             Game.scenes.push(startScene);
             Game.scenes.push(levelOneScene);
             Game.scenes.push(levelTwoScene);
+            Game.scenes.push(levelThreeScene);
+            Game.scenes.push(levelFourScene);
 
             Game.changeScene(0);
 

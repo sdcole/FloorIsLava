@@ -9,7 +9,6 @@ class RectangleUpdateComponent extends Component {
         super(parent);
 
         this.jumpTime = 0;
-        let onElevator = false;
     }
 
     update(ctx) {
@@ -32,14 +31,6 @@ class RectangleUpdateComponent extends Component {
         if ((Input.getKey("ArrowRight") == true || Input.getKey("d")) && rectangle.x < ctx.canvas.width - 50) {
             rectangle.x += 10;
         }
-        /*if (upIsPressed && rectangle.y > 0) {
-            rectangle.y -= 10;
-        }
-        
-        if (downIsPressed && rectangle.y < ctx.canvas.height - 50) {
-            rectangle.y += 10;
-        }
-        */
 
         if (!this.onGround && this.jumpTime <= 250) {
             rectangle.y += 4;
@@ -62,9 +53,6 @@ class RectangleUpdateComponent extends Component {
 
     }
 
-    reset() {
-        
-    }
 
     
 
