@@ -23,8 +23,7 @@ class Scene{
     remove(){
       let toRemove = this.gameObjects.filter(g=>g.markForDelete);
       if(toRemove.length > 0) {
-        console.log(toRemove.length)
-      }
+    }
     this.gameObjects = this.gameObjects.filter(g=>!g.markForDelete);
     }
   }

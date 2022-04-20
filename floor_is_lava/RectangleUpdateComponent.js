@@ -8,7 +8,6 @@ class RectangleUpdateComponent extends Component {
     constructor(parent) {
         super(parent);
 
-        this.jumpTime = 0;
     }
 
     update(ctx) {

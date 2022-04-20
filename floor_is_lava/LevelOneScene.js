@@ -3,6 +3,7 @@ import RectangleGameObject from "./RectangleGameObject.js";
 import FloorGameObject from "./FloorGameObject.js";
 import LavaGameObject from "./LavaGameObject.js";
 import LevelEndGameObject from "./LevelEndGameObject.js";
+import HUDGameObject from "./HUDGameObject.js";
 import Constants from "./Constants.js";
 
 class LevelOneScene extends Scene {
@@ -16,6 +17,7 @@ class LevelOneScene extends Scene {
         this.gameObjects.push(new FloorGameObject(0, this.ctx.canvas.height - 50, this.ctx.canvas.width, 50, Constants.platformColor));
         this.gameObjects.push(new LavaGameObject(250, this.ctx.canvas.height - 50, 250, 50, Constants.lavaColor, this.ctx));
         this.gameObjects.push(new LevelEndGameObject(this.ctx.canvas.width - 50, this.ctx.canvas.height - 75, 50, 100, Constants.levelEndColor));
+        this.gameObjects.push(new HUDGameObject(this.ctx));
         this.gameObjects.push(new RectangleGameObject(0, this.ctx.canvas.height - 100, width, height, Constants.rectColor, true));
     
     }
