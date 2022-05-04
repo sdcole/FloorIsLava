@@ -1,68 +1,79 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Floor is Lava</title>
-        <link href="./style.css" rel="stylesheet"></link>
-        <link rel="icon" type="image/x-icon" href="https://cdn.discordapp.com/emojis/962495906668744804.webp?size=96&quality=lossless">
-    </head>
 
-    <body>
-        <canvas id="canv"></canvas>
-        
+<head>
+  <title>Platformer</title>
+  <link href="./style.css" rel="stylesheet">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🙂</text></svg>">
+</head>
 
-
-        <script type="module">
-            "use strict"
-
-            import {getCanvas} from "./engine/scripts.js";
-            import Time from "./engine/Time.js";
-            import GameObject from "./engine/GameObject.js";
-            import Component from "./engine/Component.js";
-            import Input from "./engine/Input.js";
+<body>
+  <canvas id="canv"></canvas>
 
 
-            import Game from "./engine/Game.js";
-            import StartScene from "./floor_is_lava/StartScene.js"
-            import LevelOneScene from "./floor_is_lava/LevelOneScene.js";
-            import LevelTwoScene from "./floor_is_lava/LevelTwoScene.js";
-            import LevelThreeScene from "./floor_is_lava/LevelThreeScene.js";
-            import LevelFourScene from "./floor_is_lava/LevelFourScene.js";
-            
-            Input.attach(document);
-
-            let {canvas, ctx} = getCanvas();
-
-            let startScene = new StartScene();
-            let levelOneScene = new LevelOneScene(ctx);
-            let levelTwoScene = new LevelTwoScene(ctx);
-            let levelThreeScene = new LevelThreeScene(ctx);
-            let levelFourScene = new LevelFourScene(ctx);
-            Game.scenes.push(startScene);
-            Game.scenes.push(levelOneScene);
-            Game.scenes.push(levelTwoScene);
-            Game.scenes.push(levelThreeScene);
-            Game.scenes.push(levelFourScene);
-
-            Game.changeScene(0);
+  <script type="module">
+    "use strict"
+    import { getCanvas } from "./engine/scripts.js"
+    import Time from "./engine/Time.js"
+    import Input from "./engine/Input.js"
 
 
+    import Game from "./engine/Game.js"
+    import LevelOneScene from "./floor_is_lava/LevelOneScene.js";
+    import LevelTwoScene from "./floor_is_lava/LevelTwoScene.js";
+    import LevelThreeScene from "./floor_is_lava/LevelThreeScene.js";
+    import LevelFourScene from "./floor_is_lava/LevelFourScene.js";
+    import LevelFiveScene from "./floor_is_lava/LevelFiveScene.js";
+
+    Input.attach(document);
+
+    let { canvas, ctx } = getCanvas();
+
+
+    Game.scenes.push(new LevelOneScene());
+    Game.scenes.push(new LevelTwoScene());
+    Game.scenes.push(new LevelThreeScene());
+    Game.scenes.push(new LevelFourScene());
+    Game.scenes.push(new LevelFiveScene());
+    
+    Game.changeScene(0)
+    
+    
+    //Setup the camera
+    Game.cameraX = 0;
+    Game.cameraY = 0;
+    Game.cameraWidth = 400;
+    Game.cameraULX = -200;
+    Game.cameraULY = -200;
+
+
+    function tick() {
+
+      //Change the scene if a component requested a scene change through
+      //Game.changeScene(x) during the previous tick
+      Game.updateScene();
+
+      //Update the input. Spefically, update which keys went down or up in the last frame
+      Input.update();
 
 
 
+      Game.scene().update(ctx); //Update the scene, which updates all the game objects and call their components update() function
 
-            
-
-            function tick() {
-                Game.updateScene();
-                Input.update();
-                Game.scene().update(ctx);
-                Game.scene().draw(ctx);
-                Game.scene().remove(ctx);
-                Time.timePassed += Time.secondsBetweenFrame;
-            }
+      //Setup the game camera
+      Game.scene().draw(ctx); //Draw the scene to the screen
 
 
-            setInterval(tick, Time.millisecondsBetweenFrames);
-        </script>
-    </body>
+      Game.scene().remove(); //Remove any game objects whose markForDelete was set to true in the previous frame
+      Time.timePassed += Time.secondsBetweenFrame; //Update the total time elapsed in the game
+    }
+
+
+
+    setInterval(tick, Time.millisecondsBetweenFrames)
+
+  </script>
+</body>
+
 </html>

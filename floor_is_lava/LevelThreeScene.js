@@ -1,33 +1,52 @@
+import PrefabTextSmall from "../engine/prefabs/PrefabTextSmall.js";
+import PrefabEmpty from "../engine/prefabs/PrefabEmpty.js";
+import ControllerComponent from "./ControllerComponent.js"
 import Scene from "../engine/Scene.js"
-import RectangleGameObject from "./RectangleGameObject.js";
-import FloorGameObject from "./FloorGameObject.js";
-import LavaGameObject from "./LavaGameObject.js";
-import LevelEndGameObject from "./LevelEndGameObject.js";
-import ElevatorGameObject from "./ElevatorGameObject.js";
-import Constants from "./Constants.js";
 
-class LevelThreeScene extends Scene {
-    constructor(ctx) {
-    super("Level Three Scene");
-    this.ctx = ctx;
-    }
+import PrefabWall from "./PrefabWall.js";
+import PrefabFloor from "./PrefabFloor.js";
+import PrefabLevelEnd from "./PrefabLevelEnd.js";
+import PrefabPlayer from "./PrefabPlayer.js";
+import PrefabLava from "./PrefabLava.js";
+import PrefabHUD from "./PrefabHUD.js";
+import PrefabElevator from "./PrefabElevator.js";
 
-    start() {
-        let width = 50;
-        let height = 50;
-        this.gameObjects.push(new FloorGameObject(0, this.ctx.canvas.height - 50, this.ctx.canvas.width, 50, Constants.platformColor));
-        
-        this.gameObjects.push(new LavaGameObject(100, this.ctx.canvas.height - 50, 250, 50, Constants.lavaColor, this.ctx));
-        this.gameObjects.push(new LavaGameObject(600, this.ctx.canvas.height - 50, 400, 50, Constants.lavaColor, this.ctx));
-        this.gameObjects.push(new LavaGameObject(1250, this.ctx.canvas.height - 50, 300, 50, Constants.lavaColor, this.ctx));
+class LevelThreeScene extends Scene{
+  constructor(){
+    super();
+  }
+  start(){
+
+  
+    this.gameObjects.push(new PrefabTextSmall("PlatformerTitle", 10, 20, "Floor Is Lava"))
+    // this.gameObjects.push(new PrefabTextSmall("PushSpace", 10, 40, "Push space to exert an upward force."))
+    this.gameObjects.push(new PrefabTextSmall("PositionTextY", 10, 60, ""))
+    this.gameObjects.push(new PrefabTextSmall("VelocityTextY", 10, 80, ""))
+    this.gameObjects.push(new PrefabTextSmall("AccelerationTextY", 10, 100, ""))
+
+    this.gameObjects.push(new PrefabTextSmall("PositionTextX", 10, 140, ""))
+    this.gameObjects.push(new PrefabTextSmall("VelocityTextX", 10, 160, ""))
+    this.gameObjects.push(new PrefabTextSmall("AccelerationTextX", 10, 180, ""))
 
 
-        
-        this.gameObjects.push(new LevelEndGameObject(this.ctx.canvas.width - 50, this.ctx.canvas.height - 75, 50, 100, Constants.levelEndColor));
-        this.gameObjects.push(new RectangleGameObject(0, this.ctx.canvas.height - 100, width, height, Constants.rectColor, true));
+    this.gameObjects.push(new PrefabLava("PrefabLava", -200, 150, 400, 150));
+    this.gameObjects.push(new PrefabPlayer("PrefabPlayer", -175, 90, 10, 10, 3));
+    this.gameObjects.push(new PrefabFloor("PrefabFloor", -175, 120, 50, 10));
+    this.gameObjects.push(new PrefabFloor("PrefabFloor", -20, 120, 50, 10));
+    this.gameObjects.push(new PrefabFloor("PrefabFloor", 80, 120, 60, 10));
+
+    this.gameObjects.push(new PrefabLevelEnd("PrefabLevelEnd", 130, 110, 10, 10));
     
-    }
+    this.gameObjects.push(new PrefabWall("PrefabWall", -200, -200, 10, 400));
+    this.gameObjects.push(new PrefabWall("PrefabWall", -200, -200, 400, 10));
+    this.gameObjects.push(new PrefabWall("PrefabWall", -190, 190, 400, 10));
+    this.gameObjects.push(new PrefabWall("PrefabWall", 190, -200, 10, 400));
     
+
+
+
+    this.gameObjects.push(new PrefabEmpty("Controller").addComponent(new ControllerComponent()));
+  }
 }
 
 export default LevelThreeScene;

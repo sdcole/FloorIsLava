@@ -1,6 +1,7 @@
-class Component {
-    constructor (parent) {
-        this.parent = parent;
-    }
+class Component{
+  constructor(parent){
+    this.parent = parent;
+  }
 }
+
 export default Component;
