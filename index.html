@@ -25,6 +25,10 @@
     import LevelThreeScene from "./floor_is_lava/LevelThreeScene.js";
     import LevelFourScene from "./floor_is_lava/LevelFourScene.js";
     import LevelFiveScene from "./floor_is_lava/LevelFiveScene.js";
+    import LevelSixScene from "./floor_is_lava/LevelSixScene.js";
+    import WinScene from "./floor_is_lava/WinScene.js";
+    import LoseScene from "./floor_is_lava/LoseScene.js";
+  
 
     Input.attach(document);
 
@@ -36,6 +40,9 @@
     Game.scenes.push(new LevelThreeScene());
     Game.scenes.push(new LevelFourScene());
     Game.scenes.push(new LevelFiveScene());
+    Game.scenes.push(new LevelSixScene());
+    Game.scenes.push(new WinScene());
+    Game.scenes.push(new LoseScene());
     
     Game.changeScene(0)
     

@@ -48,16 +48,16 @@ class ControllerComponent extends Component {
     //this.jumpTimer += Time.secondsBetweenFrame;
     frameAccelerationY = frameGravity
 
-    if ((Input.getKeyDown(" ") || Input.getKeyDown("ArrowUp")) && this.canJump) {
+    if ((Input.getKeyDown(" ") || Input.getKeyDown("ArrowUp") || Input.getKey("w")) && this.canJump) {
       frameJumpForce = -this.jumpForce;
       this.jumpTimer = 0;
     }
 
     //Deal with left and right movement
 
-    if (Input.getKey("ArrowLeft"))
+    if (Input.getKey("ArrowLeft") || Input.getKey("a"))
       frameAccelerationX = -this.lateralAcceleration;
-    else if (Input.getKey("ArrowRight"))
+    else if (Input.getKey("ArrowRight") || Input.getKey("d"))
       frameAccelerationX = this.lateralAcceleration;
     else {
       frameAccelerationX = 0;
@@ -109,7 +109,10 @@ class ControllerComponent extends Component {
     while (cont) {
       let collisions = floorGameObjects.filter(b => Collisions.inCollision(player, b.getComponent("Rectangle"))).map(b => b.getComponent("Rectangle"));
       
-      if (collisions.length == 0) break;
+      if (collisions.length == 0) {
+        this.canJump = false;
+        break;
+      }
 
 
 
@@ -248,6 +251,18 @@ class ControllerComponent extends Component {
 
     
     // //Now update the text
+    if (Game.findByNameOne("HUD Lives")) {
+      let HUDGameObject = Game.findByNameOne("HUD Lives");
+      let HUDText = HUDGameObject.getComponent("Text");
+      HUDText.text = "Lives : " + Game.persist.lives;
+    }
+
+    if (Game.findByNameOne("Level")) {
+      let HUDGameObject = Game.findByNameOne("Level");
+      let HUDText = HUDGameObject.getComponent("Text");
+      HUDText.text = "Level : " + (Game.currentSceneIndex + 1);
+    }
+    
     // let positionGameObjectY = Game.findByNameOne("PositionTextY");
     // let velocityGameObjectY = Game.findByNameOne("VelocityTextY");
     // let accelerationGameObjectY = Game.findByNameOne("AccelerationTextY");

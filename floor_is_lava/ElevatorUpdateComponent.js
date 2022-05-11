@@ -28,14 +28,14 @@ class ElevatorUpdateComponent extends Component {
         if (this.goingUp) {
             elevatorRectangle.y -= 2;
             if (characterRectangle.x > elevatorRectangle.x && characterRectangle.x < elevatorRectangle.x + this.width) {
-                console.log(characterRectangle.y + "WOO");
+
                 characterRectangle.y -= 2;
                 characterRectangle.onGround = true;
             }
         }
         else {
             elevatorRectangle.y += 2;
-            console.log(characterRectangle.y + "WOO");
+
             if (characterRectangle.x > elevatorRectangle.x && characterRectangle.x < elevatorRectangle.x + this.width) {
                 characterRectangle.y += 2;
                 characterRectangle.onGround = true;

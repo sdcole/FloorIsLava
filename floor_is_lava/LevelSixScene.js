@@ -1,4 +1,3 @@
-
 import PrefabTextSmall from "../engine/prefabs/PrefabTextSmall.js";
 import PrefabTextLarge from "../engine/prefabs/PrefabTextLarge.js";
 import PrefabEmpty from "../engine/prefabs/PrefabEmpty.js";
@@ -12,9 +11,10 @@ import PrefabPlayer from "./PrefabPlayer.js";
 import PrefabLava from "./PrefabLava.js";
 import PrefabHUD from "./PrefabHUD.js";
 import PrefabElevator from "./PrefabElevator.js";
+
 import Game from "../engine/Game.js";
 
-class LevelTwoScene extends Scene{
+class LevelSixScene extends Scene{
   constructor(){
     super();
   }
@@ -38,9 +38,11 @@ class LevelTwoScene extends Scene{
 
     this.gameObjects.push(new PrefabLava("PrefabLava", -200, 150, 400, 150));
     this.gameObjects.push(new PrefabPlayer("PrefabPlayer", -175, 100, 10, 10, 3));
-    this.gameObjects.push(new PrefabFloor("PrefabFloor", -175, 120, 175, 10));
-    this.gameObjects.push(new PrefabFloor("PrefabFloor", 80, 120, 60, 10));
-    this.gameObjects.push(new PrefabLevelEnd("PrefabLevelEnd", 130, 110, 10, 10));
+    this.gameObjects.push(new PrefabFloor("PrefabFloor", -175, 120, 100, 10));
+    // this.gameObjects.push(new PrefabFloor("PrefabFloor", 80, 120, 60, 10));
+    this.gameObjects.push(new PrefabElevator("PrefabElevator", 160,100,40,10,-10,120));
+    this.gameObjects.push(new PrefabFloor("PrefabFloor", 80, 0, 60, 10));
+    this.gameObjects.push(new PrefabLevelEnd("PrefabLevelEnd", 80, -10, 10, 10));
     
     this.gameObjects.push(new PrefabWall("PrefabWall", -200, -200, 10, 400));
     this.gameObjects.push(new PrefabWall("PrefabWall", -200, -200, 400, 10));
@@ -65,4 +67,4 @@ class LevelTwoScene extends Scene{
   }
 }
 
-export default LevelTwoScene;
+export default LevelSixScene;

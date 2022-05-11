@@ -8,7 +8,7 @@ class PrefabTextLarge extends GameObject{
     this.x = x;
     this.y = y;
     this.text = text;
-    this.font = "50px arial";
+    this.font = "40px arial";
 
     this.start();
   }

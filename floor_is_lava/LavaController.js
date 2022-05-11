@@ -26,7 +26,7 @@ class LavaController extends Component{
       
         if (Game.persist.lives < 1) {
           Game.persist.lives = 3;
-          Game.changeScene(0);
+          Game.changeScene(Game.scenes.length  - 1);
         }
         
         
